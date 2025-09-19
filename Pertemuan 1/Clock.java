@@ -14,7 +14,7 @@ public class Clock{
     private boolean clockRunning = false;
     private TimerThread timerThread;
     
-    public Clock(){
+    public Clock(){ // Konstruktor untuk mengambil informasi yang dibutuhkan dari kelas lain
         clock = new ClockDisplay();
         date = new CalendarDisplay();
         temperature = new TemperatureDisplay();
@@ -22,7 +22,7 @@ public class Clock{
         makeFrame();
     }
     
-    public Clock(int hour, int minute, int second){
+    public Clock(int hour, int minute, int second){ // Sama saja, tapi yang ini bisa diinput di BlueJ
         clock = new ClockDisplay(hour, minute, second);
         date = new CalendarDisplay();
         temperature = new TemperatureDisplay();
@@ -31,29 +31,30 @@ public class Clock{
     }
 
     
-    private void start(){
+    private void start(){ // Apabila user memencet tombol start, akan mulai jalan clocknya
         clockRunning = true;
         timerThread = new TimerThread();
         timerThread.start();
     }
     
-    private void stop(){
+    private void stop(){ // Apabila user memencet tombol stop, akan mulai berhenti clocknya
         clockRunning = false;
     }
     
-    private void step(){
+    private void step(){ // Apabila user memencet tombol step, akan menjalankan "timeTick" dan increment satu detik
         clock.timeTick();
         label.setText(clock.getTime());
     }
        
-    private void quit(){
+    private void quit(){ // Apabila user memencet tombol Quit di kiri atas, program berhenti
         System.exit(0);
     }
     
-    private void makeFrame(){
+    private void makeFrame(){ // layout dari interface
         frame = new JFrame("Clock");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);;
-        
+
+        //contentPane yang berisi tanggal ,temperatur, dan waktu dari kelas lain
         JPanel contentPane = (JPanel)frame.getContentPane();
         contentPane.setBorder(new EmptyBorder(1, 60, 1, 60));
         makeMenuBar(frame);
@@ -72,7 +73,8 @@ public class Clock{
         temperatureLabel = new JLabel(temperature.getTemperature(), SwingConstants.CENTER);
         temperatureLabel.setFont(temperatureLabel.getFont().deriveFont(18.0f));
         contentPane.add(temperatureLabel, BorderLayout.EAST);
-    
+        
+        // toolbar untuk tombol start, stop, dll
         JPanel toolbar = new JPanel();
         toolbar.setLayout(new GridLayout(1, 0));
         
@@ -87,7 +89,8 @@ public class Clock{
         JButton stepButton = new JButton("Step");
         stepButton.addActionListener(e -> step());
         toolbar.add(stepButton);
-        
+
+        // Panel flow untuk bordernya/wadahnya
         JPanel flow = new JPanel();
         flow.add(toolbar);
         contentPane.add(flow, BorderLayout.SOUTH);
@@ -100,7 +103,7 @@ public class Clock{
     }
 
 
-    private void makeMenuBar(JFrame frame){
+    private void makeMenuBar(JFrame frame){ // Ini untuk tombol "File" di kiri atas, akan memunculkan pilihan "About" dan "Quit"
         final int SHORTCUT_MASK = 
             Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
@@ -126,7 +129,7 @@ public class Clock{
         menu.add(item);
     }
     
-    class TimerThread extends Thread{
+    class TimerThread extends Thread{ // ini while(1) untuk memilih tombol toolbar
         public void run(){
             while(clockRunning){
                 step();
