@@ -6,14 +6,30 @@ import javax.swing.border.*;
 public class Clock{
     private JFrame frame;
     private JLabel label;
+    private JLabel dateLabel;
+    private JLabel temperatureLabel;
     private ClockDisplay clock;
+    private CalendarDisplay date;
+    private TemperatureDisplay temperature;
     private boolean clockRunning = false;
     private TimerThread timerThread;
     
     public Clock(){
-        makeFrame();
         clock = new ClockDisplay();
+        date = new CalendarDisplay();
+        temperature = new TemperatureDisplay();
+        
+        makeFrame();
     }
+    
+    public Clock(int hour, int minute, int second){
+        clock = new ClockDisplay(hour, minute, second);
+        date = new CalendarDisplay();
+        temperature = new TemperatureDisplay();
+        
+        makeFrame();
+    }
+
     
     private void start(){
         clockRunning = true;
@@ -29,32 +45,34 @@ public class Clock{
         clock.timeTick();
         label.setText(clock.getTime());
     }
-    
-    private void showAbout(){
-        JOptionPane.showMessageDialog(frame,
-            "Clock Version 1.0\n" +
-            "A simple interface for the 'Objects First' clock display project",
-            "About Clock",
-            JOptionPane.INFORMATION_MESSAGE);
-        }
-        
+       
     private void quit(){
         System.exit(0);
     }
     
     private void makeFrame(){
         frame = new JFrame("Clock");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);;
+        
         JPanel contentPane = (JPanel)frame.getContentPane();
         contentPane.setBorder(new EmptyBorder(1, 60, 1, 60));
         makeMenuBar(frame);
         
         contentPane.setLayout(new BorderLayout(12, 12));
         
-        label = new JLabel("00:00", SwingConstants.CENTER);
-        Font displayFont = label.getFont().deriveFont(96.0f);
+        label = new JLabel("00:00:00", SwingConstants.CENTER);
+        Font displayFont = label.getFont().deriveFont(64.0f);
         label.setFont(displayFont);
         contentPane.add(label, BorderLayout.CENTER);
-        
+    
+        dateLabel = new JLabel(date.getTodayDate(), SwingConstants.CENTER);
+        dateLabel.setFont(dateLabel.getFont().deriveFont(18.0f));
+        contentPane.add(dateLabel, BorderLayout.NORTH);
+    
+        temperatureLabel = new JLabel(temperature.getTemperature(), SwingConstants.CENTER);
+        temperatureLabel.setFont(temperatureLabel.getFont().deriveFont(18.0f));
+        contentPane.add(temperatureLabel, BorderLayout.EAST);
+    
         JPanel toolbar = new JPanel();
         toolbar.setLayout(new GridLayout(1, 0));
         
@@ -72,7 +90,6 @@ public class Clock{
         
         JPanel flow = new JPanel();
         flow.add(toolbar);
-        
         contentPane.add(flow, BorderLayout.SOUTH);
         
         frame.pack();
@@ -82,8 +99,9 @@ public class Clock{
         frame.setVisible(true);
     }
 
+
     private void makeMenuBar(JFrame frame){
-        final int SHORTCUT_MASK =
+        final int SHORTCUT_MASK = 
             Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
         JMenuBar menubar= new JMenuBar();
@@ -118,7 +136,7 @@ public class Clock{
         
         private void pause(){
             try{
-                Thread.sleep(300);
+                Thread.sleep(1000);
             }
             catch(InterruptedException exc){
                 
