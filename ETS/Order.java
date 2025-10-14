@@ -1,17 +1,17 @@
 public class Order{
-    private Coffee coffee;
+    private Coffee coffee; // atribut-atribut
     private String size;
     private boolean addSugar;
     private boolean addMilk;
 
-    public Order(Coffee coffee, String size, boolean addSugar, boolean addMilk){
+    public Order(Coffee coffee, String size, boolean addSugar, boolean addMilk){ // untuk nyocokkin
         this.coffee = coffee;
         this.size = size;
         this.addSugar = addSugar;
         this.addMilk = addMilk;
     }
 
-    public double calculatePrice(){
+    public double calculatePrice(){ // kalau size M atau L dikali
         double kali = 1.0;
         if(size.equalsIgnoreCase("M")){
             kali = 1.5;
@@ -26,7 +26,7 @@ public class Order{
         return price;
     }
 
-    public double[] getIngredients(){
+    public double[] getIngredients(){ // perhitungan untuk hitung stok ada/tidak
         double coffee = 1;
         double sugar = 0;
         double milk = 0;
@@ -47,7 +47,7 @@ public class Order{
         return new double[]{coffee, sugar, milk, water};
     }
 
-    public String getDescription(){
+    public String getDescription(){ // untuk di log
         return size.toUpperCase() + " " + coffee.getName() + (addSugar ? " + gula" : "") + (addMilk ? " + susu" : "");
     }
 }
