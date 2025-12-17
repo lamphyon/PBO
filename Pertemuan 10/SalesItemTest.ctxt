@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=SalesItemTest
+comment1.params=
+comment1.target=void\ testConstructorAndGetters()
+comment2.params=
+comment2.target=void\ testAddCommentValid()
+comment3.params=
+comment3.target=void\ testAddCommentDuplicateAuthor()
+comment4.params=
+comment4.target=void\ testAddCommentInvalidRating()
+comment5.params=
+comment5.target=void\ testRemoveComment()
+comment6.params=
+comment6.target=void\ testUpvoteDownvoteComment()
+comment7.params=
+comment7.target=void\ testFindMostHelpfulComment()
+comment8.params=
+comment8.target=void\ testShowInfo()
+numComments=9
