@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=ImageViewer
+comment1.params=
+comment1.target=ImageViewer()
+comment2.params=
+comment2.target=void\ initUI()
+comment3.params=
+comment3.target=void\ setupMenuBar()
+comment4.params=menu\ title\ key\ mask\ action
+comment4.target=void\ addMenuItem(javax.swing.JMenu,\ java.lang.String,\ int,\ int,\ java.awt.event.ActionListener)
+comment5.params=
+comment5.target=void\ openFile()
+comment6.params=
+comment6.target=void\ closeImage()
+comment7.params=type
+comment7.target=void\ applyFilter(java.lang.String)
+comment8.params=args
+comment8.target=void\ main(java.lang.String[])
+numComments=9
