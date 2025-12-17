@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=SimulatorView
+comment1.params=height\ width
+comment1.target=SimulatorView(int,\ int)
+comment2.params=field
+comment2.target=void\ showStatus(Field)
+comment3.params=g
+comment3.target=void\ paintComponent(java.awt.Graphics)
+numComments=4
