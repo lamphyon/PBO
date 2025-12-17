@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Ball
+comment1.params=x\ y\ w\ h
+comment1.target=Ball(int,\ int,\ int,\ int)
+comment2.params=xDir
+comment2.target=void\ setXDir(int)
+comment3.params=yDir
+comment3.target=void\ setYDir(int)
+comment4.params=
+comment4.target=void\ move()
+comment5.params=g
+comment5.target=void\ draw(java.awt.Graphics)
+numComments=6
